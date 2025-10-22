@@ -4,7 +4,7 @@ Submitted by: **Tasmia Chowdhury**
 
 About this web app: **App description here**
 
-Time spent: **X** hours
+Time spent: **INCOMPLETE WILL FINISH TMRW** hours
 
 ## Required Features
 
