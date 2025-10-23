@@ -1,3 +1,4 @@
+import "./dotenv.js";
 import pg from 'pg'
 
 const config = {
@@ -8,7 +9,7 @@ const config = {
     database: process.env.PGDATABASE,
     ssl: {
       rejectUnauthorized: false
-    }
+    }  
 }
 
 const pool = new pg.Pool(config)

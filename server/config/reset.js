@@ -1,11 +1,17 @@
-import pool from "database.js";
+import pool from "./database.js";
+import "./dotenv.js";
+//Tables 
+// cars 
+// features 
+// options
+// customCars
 
 
 const createCar = async () => {
     const createCarTable = ` 
         CREATE TABLE IF NOT EXISTS cars(
             car_id SERIAL PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
+            car_name VARCHAR(255) NOT NULL,
             base_price NUMERIC NOT NULL,
             total_price NUMERIC NOT NULL
             ); 
