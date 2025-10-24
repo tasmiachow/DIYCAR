@@ -1,0 +1,66 @@
+.edit-container {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+.feature-edit-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.feature-dropdown {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  width: 220px;
+}
+
+.feature-dropdown label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #ffd700;
+}
+
+.feature-dropdown select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #f8f8f8;
+  color: black;
+}
+
+.edit-btn-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.details-btn {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.details-btn:hover {
+  background-color: #0b5ed7;
+}
+
+.delete {
+  background-color: crimson;
+}
+
+.delete:hover {
+  background-color: darkred;
+}

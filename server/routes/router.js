@@ -20,10 +20,10 @@ router.get("/options", async (req, res) => {
 
 router.get("/", CarsController.getCars);
 
-router.get("/:car_id", CarsController.getCarById);
+router.get("/:id", CarsController.getCarById);
 router.post("/", CarsController.addCar);
-router.delete("/:car_id", CarsController.deleteCar);
-router.patch("/:car_id", CarsController.editCar);
+router.delete("/:id", CarsController.deleteCar);
+router.patch("/:id", CarsController.editCar);
 
 
 

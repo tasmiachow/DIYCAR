@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "../css/CarDetails.css";
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -16,15 +17,25 @@ const CarDetails = () => {
       }
     };
     fetchCar();
-  }, [id]); // ✅ runs only when id changes (not on every re-render)
+  }, [id]);
 
   if (!car) return <p>Loading...</p>;
 
   return (
     <div className="singleCar">
       <h2>{car.car_name}</h2>
-      <p>Total Price: ${car.total_price}</p>
-      {/* etc. */}
+      <p><strong>Total Price:</strong> ${car.total_price}</p>
+
+      <div className="feature-list">
+        {car.features?.map((f, index) => (
+          <div key={index} className="feature-item">
+            <h3>{f.feature_name}</h3>
+            <img src={f.image_url} alt={f.option_name} />
+            <p>{f.option_name}</p>
+            <p>+${f.option_price}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

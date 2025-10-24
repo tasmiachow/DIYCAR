@@ -11,7 +11,7 @@ const Card = ({ car_id, car_name, base_price, total_price }) => {
   };
 
   const handleEditDetails = () =>{
-    navigate(`/cars/edit/${car_id}`)
+    navigate(`/edit/${car_id}`)
   }
 
   return (
@@ -23,7 +23,7 @@ const Card = ({ car_id, car_name, base_price, total_price }) => {
       <button className="details-btn" onClick={handleViewDetails}>
         View Details
       </button>
-      <button className="details-btn" onClick={""}>
+      <button className="details-btn" onClick={handleEditDetails}>
         Edit 
       </button>
     </div>
