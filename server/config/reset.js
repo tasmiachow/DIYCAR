@@ -1,10 +1,25 @@
+import { readFileSync } from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import pool from "./database.js";
 import "./dotenv.js";
-//Tables 
+
 // cars 
 // features 
 // options
 // customCars
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load JSON manually
+const featuresData = JSON.parse(
+  readFileSync(path.resolve(__dirname, "../data/features.json"), "utf-8")
+);
+const optionsData = JSON.parse(
+  readFileSync(path.resolve(__dirname, "../data/options.json"), "utf-8")
+);
+
 
 
 const createCar = async () => {
@@ -32,8 +47,7 @@ const features = async () =>{
         
         CREATE TABLE IF NOT EXISTS features(
             feature_id SERIAL PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            is_required BOOLEAN 
+            name VARCHAR(255) NOT NULL
             ); 
         `;
     try{
@@ -55,8 +69,7 @@ const options = async () =>{
             FOREIGN KEY (option_for_feature) REFERENCES features(feature_id),
             name VARCHAR(255) NOT NULL,
             price NUMERIC NOT NULL, 
-            image_url TEXT NOT NULL, 
-            is_available BOOLEAN 
+            image_url TEXT NOT NULL
         ); 
         `;
     try{
@@ -110,8 +123,39 @@ const dropAllTables = async() =>{
 }; 
 
 
+// --- SEEDING DATA ---
+const seedData = async () => {
+  try {
+    // Seed Features
+    for (const f of featuresData) {
+      await pool.query(
+        `INSERT INTO features (feature_id, name)
+         VALUES ($1, $2)
+         ON CONFLICT (feature_id) DO NOTHING;`,
+        [f.feature_id, f.name]
+      );
+    }
+    console.log("✅ Seeded features");
+
+    // Seed Options
+    for (const o of optionsData) {
+      await pool.query(
+        `INSERT INTO options (option_id, option_for_feature, name, price, image_url)
+         VALUES ($1, $2, $3, $4, $5)
+         ON CONFLICT (option_id) DO NOTHING;`,
+        [o.option_id, o.option_for_feature, o.name, o.price, o.image_url]
+      );
+    }
+    console.log("✅ Seeded options");
+  } catch (err) {
+    console.log("❌ Error seeding data:", err);
+  }
+};
+
+
 await dropAllTables();
 await createCar();
 await features();
 await options();
 await customized_car();
+await seedData();

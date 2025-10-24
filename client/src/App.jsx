@@ -18,7 +18,7 @@ const App = () => {
       element: <ViewCars title='BOLT BUCKET | Custom Cars' />
     },
     {
-      path: '/customcars/:id',
+      path: '/cars/:id',
       element: <CarDetails title='BOLT BUCKET | View' />
     },
     {

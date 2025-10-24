@@ -1,0 +1,6 @@
+[
+  { "feature_id": 1, "name": "Color"},
+  { "feature_id": 2, "name": "Interior"},
+  { "feature_id": 3, "name": "Wheels"},
+  { "feature_id": 4, "name": "Car Size"}
+]

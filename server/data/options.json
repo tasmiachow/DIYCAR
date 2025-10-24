@@ -1,0 +1,18 @@
+[
+  { "option_id": 1, "option_for_feature": 1, "name": "Red", "price": 500, "image_url": "https://modernica.net/cdn/shop/products/Fiberglass-500x500_0029_RED_500x.jpg?v=1561496641" },
+  { "option_id": 2, "option_for_feature": 1, "name": "Blue", "price": 400, "image_url": "https://sheffieldmetals.com/wp-content/uploads/2024/08/Regal-Blue.png" },
+  { "option_id": 3, "option_for_feature": 1, "name": "Black", "price": 600, "image_url": "https://fabric.spiritex.net/cdn/shop/products/10050_Black_f1c3b6f6-098f-4ece-b437-7126d158d93c.jpg?v=1670013193" },
+  { "option_id": 4, "option_for_feature": 1, "name": "White", "price": 300, "image_url": "https://www.safcoproducts.com/assets/products/pdp-main-images/56182_RESI_White_Swatch.jpg" },
+
+  { "option_id": 5, "option_for_feature": 2, "name": "Leather", "price": 1500, "image_url": "https://autoimage.capitalone.com/cms/Auto/assets/images/2384-hero-what-is-nappa-leather-in-a-car.jpg" },
+  { "option_id": 6, "option_for_feature": 2, "name": "Fabric", "price": 800, "image_url": "https://www.thedrive.com/wp-content/uploads/content-b/message-editor/1613663272467-inlinea.jpg?strip=all&quality=85" },
+  { "option_id": 7, "option_for_feature": 2, "name": "Suede", "price": 1200, "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM-xV7on3Zrd8zB_hHRMIru_cp8auJje8vww&s" },
+
+  { "option_id": 8, "option_for_feature": 3, "name": "Standard", "price": 0, "image_url": "https://www.lesschwab.com/on/demandware.static/-/Library-Sites-LesSchwabLibrary/default/dw6e0388d8/images/learningCenter/article/tile/TileTireSizeExplained_600-300.webp" },
+  { "option_id": 9, "option_for_feature": 3, "name": "Alloy", "price": 1000, "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs3Vrr7D8DDhZlqYxWlkJiM3DYwXL8CZwjzw&s" },
+  { "option_id": 10, "option_for_feature": 3, "name": "Sports", "price": 1800, "image_url": "https://i.pinimg.com/736x/a3/c7/c9/a3c7c987ae0aa5c6c122c2a3dcd64193.jpg" },
+
+  { "option_id": 11, "option_for_feature": 4, "name": "Compact", "price": 0, "image_url": "https://hips.hearstapps.com/hmg-prod/images/2025-mini-cooper-s-hardtop-2-door-123-66f2bf63dab9c.jpg?crop=0.561xw:0.473xh;0.246xw,0.341xh&resize=2048:*" },
+  { "option_id": 12, "option_for_feature": 4, "name": "Sedan", "price": 2000, "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVbJA_rqkJ4ewBRo0YhfDt4kbDlFm4bMAKqA&s" },
+  { "option_id": 13, "option_for_feature": 4, "name": "SUV", "price": 4000, "image_url": "https://cdn-fastly.autoguide.com/media/2023/06/09/12754600/sporty-suvs-for-every-budget.jpg?size=720x845&nocrop=1" }
+]

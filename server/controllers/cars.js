@@ -17,7 +17,7 @@ const getCarById = async (req, res) => {
         const carQuery = 
         `SELECT 
             c.car_id,
-            c.name AS car_name,
+            c.car_name AS car_name,
             c.total_price,
             f.name AS feature_name,
             o.name AS option_name,
@@ -70,10 +70,11 @@ const addCar = async(req, res) => {
             car_name, 
             base_price,
             total_price,
+            customizations
         } = req.body;
         
         
-        const results = await pool.query(
+        const carResults = await pool.query(
             `INSERT INTO cars (car_name, base_price, total_price)
             VALUES($1, $2, $3)
             RETURNING car_id
@@ -83,26 +84,21 @@ const addCar = async(req, res) => {
                 total_price
              ]
         );
-        const {
-            feature_id, 
-            option_id
-        } = req.body;
-
-        const customCarQuery = await pool.query(`
-            INSERT INTO customCars (custom_car_id, custom_feature_id, custom_option_id)
-            VALUES($1, $2, $3)
-            RETURNING *`, [
-                results.rows[0].car_id, 
-                feature_id,
-                option_id
-            ]
-        )
+        const car_id = carResults.rows[0].car_id;
+        for(const item of customizations){
+            const {feature_id, option_id} = item;
+            await pool.query(
+                `INSERT INTO customCars (custom_car_id, custom_feature_id, custom_option_id)
+                VALUES ($1, $2, $3)`,
+                [car_id, feature_id, option_id]);
+        };
+        
         res.status(201).json(
             {   
-                "customization":  {...customCarQuery.rows[0]}
+                message: "Car created successfully", car_id 
 
             }
-        )
+        );
     }
     catch(error){
         res.status(409).json({error: error.message});
@@ -110,11 +106,64 @@ const addCar = async(req, res) => {
 }
 
 //update
-const editCar = async() => {
+const editCar = async(req, res) => {
     try{
+        const car_id = parseInt(req.params.id);
+        const{
+            car_name, 
+            base_price, 
+            total_price, 
+            customizations
+        } = req.body;
 
+        const update = await pool.query(
+            `UPDATE cars SET car_name =$1, base_price = $2, total_price = $3 
+            WHERE car_id =$4
+            RETURNING car_id`, 
+            [
+                car_name, 
+                base_price, 
+                total_price, 
+                car_id
+            ]
+        );
+       
+        
+        for(const item of customizations){
+            const {feature_id, option_id} = item;
+            await pool.query(
+                `UPDATE customCars SET custom_option_id = $1 
+                WHERE custom_car_id = $2 AND custom_feature_id = $3;`,
+                [ option_id, 
+                    car_id, 
+                    feature_id
+                ]);
+        };
+
+        res.status(200).json({ message: "Car updated successfully" });
     }
     catch(error){
         res.status(409).json({error: error.message}); 
     }
-}
+};
+
+
+
+//delete
+const deleteCar = async(req, res) =>{
+    try{
+        const car_id = parseInt(req.params.id);
+        const deleteFromcc = await pool.query(`DELETE FROM customCars WHERE custom_car_id = $1`, [
+            car_id,
+        ]);
+        const results = await pool.query(`DELETE FROM cars WHERE car_id = $1`, [
+            car_id,
+        ]);
+        res.status(200).json({ message: "Car deleted successfully" });
+    }
+    catch(error){
+        res.status(409).json( {error: error.message});
+    }
+};
+
+export default { getCars, getCarById, addCar, editCar, deleteCar };

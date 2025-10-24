@@ -1,7 +1,9 @@
-import express from 'express'
-import path from 'path'
-import favicon from 'serve-favicon'
-import dotenv from 'dotenv'
+import express from 'express';
+import path from 'path';
+import favicon from 'serve-favicon';
+import dotenv from 'dotenv';
+import carRouter from './routes/router.js';
+import cors from 'cors';
 
 // import the router from your routes file
 
@@ -12,7 +14,8 @@ const PORT = process.env.PORT || 3000
 
 const app = express()
 
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 if (process.env.NODE_ENV === 'development') {
     app.use(favicon(path.resolve('../', 'client', 'public', 'lightning.png')))
@@ -23,7 +26,7 @@ else if (process.env.NODE_ENV === 'production') {
 }
 
 // specify the api path for the server to use
-
+app.use('/cars', carRouter)
 
 if (process.env.NODE_ENV === 'production') {
     app.get('/*', (_, res) =>
